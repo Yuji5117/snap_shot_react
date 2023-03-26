@@ -1,9 +1,11 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
-import CategoryItem from './components/CategoryItem';
+import CategoryText from './components/CategoryItem';
 import Image from './components/Image';
 import SearchForm from './components/SearchForm';
+import { categories } from './store/categories';
+import { CategoryType } from './types/types';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -23,7 +25,11 @@ function App() {
           <SearchForm />
         </SearchContainer>
         <CategoryContainer>
-          <CategoryItem />
+          {categories.map((category: CategoryType) => (
+            <Item key={category.id}>
+              <CategoryText name={category.name} />
+            </Item>
+          ))}
         </CategoryContainer>
         <Subtitle>Mountain Pictures</Subtitle>
         <ImageContainer>
@@ -61,6 +67,17 @@ const CategoryContainer = styled.div`
   display: flex;
   justify-content: center;
   column-gap: 20px;
+`;
+
+const Item = styled.div`
+  height: 30px;
+  width: 100px;
+  background-color: #051c33;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 `;
 
 const Subtitle = styled.h2`
