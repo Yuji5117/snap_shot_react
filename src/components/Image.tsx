@@ -4,16 +4,88 @@ const Image = () => {
   return (
     <>
       <div>
-        <img src={sampleImage} alt="" height={300} />
+        <img src={sampleImage} alt="" height={180} width={230} />
       </div>
       <div>
-        <img src={sampleImage} alt="" height={300} />
+        <img src={sampleImage} alt="" height={180} width={230} />
       </div>
       <div>
-        <img src={sampleImage} alt="" height={300} />
+        <img src={sampleImage} alt="" height={180} width={230} />
       </div>
       <div>
-        <img src={sampleImage} alt="" height={300} />
+        <img src={sampleImage} alt="" height={180} width={230} />
+      </div>
+      <div>
+        <img src={sampleImage} alt="" height={180} width={230} />
+      </div>
+      <div>
+        <img src={sampleImage} alt="" height={180} width={230} />
+      </div>
+      <div>
+        <img src={sampleImage} alt="" height={180} width={230} />
+      </div>
+      <div>
+        <img src={sampleImage} alt="" height={180} width={230} />
+      </div>
+      <div>
+        <img src={sampleImage} alt="" height={180} width={230} />
+      </div>
+      <div>
+        <img src={sampleImage} alt="" height={180} width={230} />
+      </div>
+      <div>
+        <img src={sampleImage} alt="" height={180} width={230} />
+      </div>
+      <div>
+        <img src={sampleImage} alt="" height={180} width={230} />
+      </div>
+      <div>
+        <img src={sampleImage} alt="" height={180} width={230} />
+      </div>
+      <div>
+        <img src={sampleImage} alt="" height={180} width={230} />
+      </div>
+      <div>
+        <img src={sampleImage} alt="" height={180} width={230} />
+      </div>
+      <div>
+        <img src={sampleImage} alt="" height={180} width={230} />
+      </div>
+      <div>
+        <img src={sampleImage} alt="" height={180} width={230} />
+      </div>
+      <div>
+        <img src={sampleImage} alt="" height={180} width={230} />
+      </div>
+      <div>
+        <img src={sampleImage} alt="" height={180} width={230} />
+      </div>
+      <div>
+        <img src={sampleImage} alt="" height={180} width={230} />
+      </div>
+      <div>
+        <img src={sampleImage} alt="" height={180} width={230} />
+      </div>
+      <div>
+        <img src={sampleImage} alt="" height={180} width={230} />
+      </div>
+      <div>
+        <img src={sampleImage} alt="" height={180} width={230} />
+      </div>
+      <div>
+        <img src={sampleImage} alt="" height={180} width={230} />
+      </div>
+      <div>
+        <img src={sampleImage} alt="" height={180} width={230} />
+      </div>
+      <div>
+        <img src={sampleImage} alt="" height={180} width={230} />
+      </div>
+      <div>
+        <img src={sampleImage} alt="" height={180} width={230} />
+      </div>
+      <div>
+        <img src={sampleImage} alt="" height={180} width={230} />
       </div>
     </>
   );
