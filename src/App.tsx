@@ -1,7 +1,7 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
-import CategoryText from './components/CategoryItem';
+import CategoryText from './components/CategoryText';
 import Image from './components/Image';
 import SearchForm from './components/SearchForm';
 import { categories } from './store/categories';
