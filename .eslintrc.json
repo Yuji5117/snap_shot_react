@@ -23,8 +23,9 @@
     // suppress errors for missing 'import React' in files
     "react/react-in-jsx-scope": "off",
     "semi": "error",
-    "no-console": "error",
+    "no-console": "warn",
     "no-empty": "error",
+    "no-unsafe-assignment": "off",
     "no-irregular-whitespace": "error",
     "array-callback-return": "error",
     "default-case": "error",
