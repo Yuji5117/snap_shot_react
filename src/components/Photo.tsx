@@ -4,7 +4,7 @@ interface PropsType {
 }
 
 const Photo = ({ url, description }: PropsType) => {
-  return <img src={url} alt="{description}" height={180} width={230} />;
+  return <img src={url} alt={description} height={180} width={230} />;
 };
 
 export default Photo;
