@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { useEffect, useState } from 'react';
 import {
-  DefalutKeyword,
+  DefaultKeyword,
   PhotoModel,
   UnsplashPhoto,
   UnsplashResponse,
@@ -9,14 +9,14 @@ import {
 
 export const useFetchPhotos = () => {
   const [photos, setPhotos] = useState<PhotoModel[]>([]);
-  const [defalutKeyword, setDefalutKeyword] =
-    useState<DefalutKeyword>('Mountain');
+  const [defaultKeyword, setDefaultKeyword] =
+    useState<DefaultKeyword>('Mountain');
 
   useEffect(() => {
     const searchPhotosByKeyword = async (): Promise<PhotoModel[]> => {
       const apiKey: string = import.meta.env.VITE_UNSPLASH_API_KEY;
       const response: AxiosResponse<UnsplashResponse> = await axios.get(
-        `https://api.unsplash.com/search/photos?query=${defalutKeyword}&per_page=24&client_id=${apiKey}`,
+        `https://api.unsplash.com/search/photos?query=${defaultKeyword}&per_page=24&client_id=${apiKey}`,
       );
 
       const photosResponse: PhotoModel[] = response.data.results.map(
@@ -39,7 +39,7 @@ export const useFetchPhotos = () => {
       .catch((e: AxiosError<{ error: string }>) => {
         console.log('エラー：', e.message);
       });
-  }, [defalutKeyword]);
+  }, [defaultKeyword]);
 
-  return { photos, defalutKeyword, setDefalutKeyword };
+  return { photos, defaultKeyword, setDefaultKeyword };
 };

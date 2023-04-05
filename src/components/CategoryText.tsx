@@ -1,20 +1,20 @@
 import { MouseEvent } from 'react';
 import styled from 'styled-components';
-import { DefalutKeyword } from '../types/types';
+import { DefaultKeyword } from '../types/types';
 
 interface PropsType {
-  defalutKeyword: DefalutKeyword;
-  onChangeDefalutKeyword: (
+  defaultKeyword: DefaultKeyword;
+  onChangeDefaultKeyword: (
     e: MouseEvent<HTMLButtonElement>,
-    defalutKeyword: DefalutKeyword,
+    defaultKeyword: DefaultKeyword,
   ) => void;
 }
 
-const Category = ({ defalutKeyword, onChangeDefalutKeyword }: PropsType) => {
+const Category = ({ defaultKeyword, onChangeDefaultKeyword }: PropsType) => {
   return (
     <>
-      <Button onClick={(e) => onChangeDefalutKeyword(e, defalutKeyword)}>
-        {defalutKeyword}
+      <Button onClick={(e) => onChangeDefaultKeyword(e, defaultKeyword)}>
+        {defaultKeyword}
       </Button>
     </>
   );

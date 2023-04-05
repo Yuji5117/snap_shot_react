@@ -6,7 +6,7 @@ import reset from 'styled-reset';
 import Category from './components/CategoryText';
 import SearchForm from './components/SearchForm';
 import { categories } from './store/categories';
-import { CategoryType, DefalutKeyword, PhotoModel } from './types/types';
+import { CategoryType, DefaultKeyword, PhotoModel } from './types/types';
 import Photo from './components/Photo';
 import { useFetchPhotos } from './hooks/useFetchPhotos';
 
@@ -19,14 +19,14 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-  const { photos, defalutKeyword, setDefalutKeyword } = useFetchPhotos();
+  const { photos, defaultKeyword, setDefaultKeyword } = useFetchPhotos();
 
-  const onChangeDefalutKeyword = (
+  const onChangeDefaultKeyword = (
     e: MouseEvent<HTMLButtonElement>,
-    defalutKeyword: DefalutKeyword,
+    defaultKeyword: DefaultKeyword,
   ) => {
     e.preventDefault();
-    setDefalutKeyword(defalutKeyword);
+    setDefaultKeyword(defaultKeyword);
   };
 
   return (
@@ -41,13 +41,13 @@ function App() {
           {categories.map((category: CategoryType) => (
             <Item key={category.id}>
               <Category
-                defalutKeyword={category.word}
-                onChangeDefalutKeyword={onChangeDefalutKeyword}
+                defaultKeyword={category.word}
+                onChangeDefaultKeyword={onChangeDefaultKeyword}
               />
             </Item>
           ))}
         </CategoryContainer>
-        <Subtitle>{defalutKeyword} Pictures</Subtitle>
+        <Subtitle>{defaultKeyword} Pictures</Subtitle>
         <ImageContainer>
           {photos.map((photo: PhotoModel) => (
             <div key={photo.id}>
