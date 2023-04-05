@@ -28,12 +28,12 @@ function App() {
 
   useEffect(() => {
     const searchPhotosByKeyword = async (): Promise<PhotoModel[]> => {
-      const apiKey = import.meta.env.VITE_UNSPLASH_API_KEY;
+      const apiKey: string = import.meta.env.VITE_UNSPLASH_API_KEY;
       const response: AxiosResponse<UnsplashResponse> = await axios.get(
         `https://api.unsplash.com/search/photos?query=mountain&per_page=24&client_id=${apiKey}`,
       );
 
-      const photosResponse = response.data.results.map(
+      const photosResponse: PhotoModel[] = response.data.results.map(
         (result: UnsplashPhoto) => {
           return {
             id: result.id,
@@ -47,7 +47,7 @@ function App() {
     };
 
     searchPhotosByKeyword()
-      .then((photos) => {
+      .then((photos: PhotoModel[]) => {
         setPhotos(photos);
       })
       .catch((e: AxiosError<{ error: string }>) => {
