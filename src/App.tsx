@@ -33,8 +33,6 @@ function App() {
         `https://api.unsplash.com/search/photos?query=mountain&per_page=24&client_id=${apiKey}`,
       );
 
-      // console.log(response.data);
-
       const photosResponse = response.data.results.map(
         (result: UnsplashPhoto) => {
           return {
