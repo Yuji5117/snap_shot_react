@@ -3,18 +3,18 @@ import { CategoryType } from '../types/types';
 export const categories: CategoryType[] = [
   {
     id: 1,
-    name: 'Mountain',
+    word: 'Mountain',
   },
   {
     id: 2,
-    name: 'Beach',
+    word: 'Beach',
   },
   {
     id: 3,
-    name: 'Birds',
+    word: 'Birds',
   },
   {
     id: 4,
-    name: 'Food',
+    word: 'Food',
   },
 ];

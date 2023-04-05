@@ -1,19 +1,14 @@
-import { useEffect, useState } from 'react';
+import { MouseEvent } from 'react';
 
-import axios, { AxiosError, AxiosResponse } from 'axios';
 import styled, { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
-import CategoryText from './components/CategoryText';
+import Category from './components/CategoryText';
 import SearchForm from './components/SearchForm';
 import { categories } from './store/categories';
-import {
-  CategoryType,
-  PhotoModel,
-  UnsplashPhoto,
-  UnsplashResponse,
-} from './types/types';
+import { CategoryType, DefalutKeyword, PhotoModel } from './types/types';
 import Photo from './components/Photo';
+import { useFetchPhotos } from './hooks/useFetchPhotos';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -24,36 +19,15 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-  const [photos, setPhotos] = useState<PhotoModel[]>([]);
+  const { photos, defalutKeyword, setDefalutKeyword } = useFetchPhotos();
 
-  useEffect(() => {
-    const searchPhotosByKeyword = async (): Promise<PhotoModel[]> => {
-      const apiKey: string = import.meta.env.VITE_UNSPLASH_API_KEY;
-      const response: AxiosResponse<UnsplashResponse> = await axios.get(
-        `https://api.unsplash.com/search/photos?query=mountain&per_page=24&client_id=${apiKey}`,
-      );
-
-      const photosResponse: PhotoModel[] = response.data.results.map(
-        (result: UnsplashPhoto) => {
-          return {
-            id: result.id,
-            url: result.urls.regular,
-            description: result.alt_description,
-          };
-        },
-      );
-
-      return photosResponse;
-    };
-
-    searchPhotosByKeyword()
-      .then((photos: PhotoModel[]) => {
-        setPhotos(photos);
-      })
-      .catch((e: AxiosError<{ error: string }>) => {
-        console.log('エラー：', e.message);
-      });
-  }, []);
+  const onChangeDefalutKeyword = (
+    e: MouseEvent<HTMLButtonElement>,
+    defalutKeyword: DefalutKeyword,
+  ) => {
+    e.preventDefault();
+    setDefalutKeyword(defalutKeyword);
+  };
 
   return (
     <>
@@ -66,13 +40,15 @@ function App() {
         <CategoryContainer>
           {categories.map((category: CategoryType) => (
             <Item key={category.id}>
-              <CategoryText name={category.name} />
+              <Category
+                defalutKeyword={category.word}
+                onChangeDefalutKeyword={onChangeDefalutKeyword}
+              />
             </Item>
           ))}
         </CategoryContainer>
-        <Subtitle>Mountain Pictures</Subtitle>
+        <Subtitle>{defalutKeyword} Pictures</Subtitle>
         <ImageContainer>
-          {/* <Photo /> */}
           {photos.map((photo: PhotoModel) => (
             <div key={photo.id}>
               <Photo url={photo.url} description={photo.description} />

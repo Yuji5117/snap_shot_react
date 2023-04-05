@@ -1,16 +1,28 @@
+import { MouseEvent } from 'react';
 import styled from 'styled-components';
+import { DefalutKeyword } from '../types/types';
 
-const CategoryText = ({ name }: { name: string }) => {
+interface PropsType {
+  defalutKeyword: DefalutKeyword;
+  onChangeDefalutKeyword: (
+    e: MouseEvent<HTMLButtonElement>,
+    defalutKeyword: DefalutKeyword,
+  ) => void;
+}
+
+const Category = ({ defalutKeyword, onChangeDefalutKeyword }: PropsType) => {
   return (
     <>
-      <Text>{name}</Text>
+      <Button onClick={(e) => onChangeDefalutKeyword(e, defalutKeyword)}>
+        {defalutKeyword}
+      </Button>
     </>
   );
 };
 
-export default CategoryText;
+export default Category;
 
-const Text = styled.p`
-  color: white;
+const Button = styled.button`
+  /* color: white; */
   font-size: 16px;
 `;

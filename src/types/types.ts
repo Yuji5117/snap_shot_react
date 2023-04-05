@@ -1,6 +1,6 @@
 export type CategoryType = {
   id: number;
-  name: string;
+  word: DefalutKeyword;
 };
 
 export type UnsplashResponse = {
@@ -29,3 +29,5 @@ type Urls = {
   small_s3: string;
   thumb: string;
 };
+
+export type DefalutKeyword = 'Mountain' | 'Beach' | 'Birds' | 'Food';
