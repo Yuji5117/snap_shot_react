@@ -1,11 +1,19 @@
+import { useEffect, useState } from 'react';
+
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import styled, { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
 import CategoryText from './components/CategoryText';
-import Image from './components/Image';
 import SearchForm from './components/SearchForm';
 import { categories } from './store/categories';
-import { CategoryType } from './types/types';
+import {
+  CategoryType,
+  PhotoModel,
+  UnsplashPhoto,
+  UnsplashResponse,
+} from './types/types';
+import Photo from './components/Photo';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -16,6 +24,39 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+  const [photos, setPhotos] = useState<PhotoModel[]>([]);
+
+  useEffect(() => {
+    const searchPhotosByKeyword = async (): Promise<PhotoModel[]> => {
+      const apiKey = import.meta.env.VITE_UNSPLASH_API_KEY;
+      const response: AxiosResponse<UnsplashResponse> = await axios.get(
+        `https://api.unsplash.com/search/photos?query=mountain&per_page=24&client_id=${apiKey}`,
+      );
+
+      // console.log(response.data);
+
+      const photosResponse = response.data.results.map(
+        (result: UnsplashPhoto) => {
+          return {
+            id: result.id,
+            url: result.urls.regular,
+            description: result.alt_description,
+          };
+        },
+      );
+
+      return photosResponse;
+    };
+
+    searchPhotosByKeyword()
+      .then((photos) => {
+        setPhotos(photos);
+      })
+      .catch((e: AxiosError<{ error: string }>) => {
+        console.log('エラー：', e.message);
+      });
+  }, []);
+
   return (
     <>
       <GlobalStyle />
@@ -33,7 +74,12 @@ function App() {
         </CategoryContainer>
         <Subtitle>Mountain Pictures</Subtitle>
         <ImageContainer>
-          <Image />
+          {/* <Photo /> */}
+          {photos.map((photo: PhotoModel) => (
+            <div key={photo.id}>
+              <Photo url={photo.url} description={photo.description} />
+            </div>
+          ))}
         </ImageContainer>
       </Wrapper>
     </>

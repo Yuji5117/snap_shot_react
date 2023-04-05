@@ -3,8 +3,29 @@ export type CategoryType = {
   name: string;
 };
 
-export type PhotType = {
+export type UnsplashResponse = {
+  results: UnsplashPhoto[];
+  total: number;
+  total_pages: number;
+};
+
+export type UnsplashPhoto = {
   id: number;
-  title: string;
+  urls: Urls;
+  alt_description: string;
+};
+
+export type PhotoModel = {
+  id: number;
   url: string;
+  description: string;
+};
+
+type Urls = {
+  full: string;
+  raw: string;
+  regular: string;
+  small: string;
+  small_s3: string;
+  thumb: string;
 };
