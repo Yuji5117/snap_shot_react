@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { useEffect, useState } from 'react';
+import { API_URL, UNSPLASH_API_KEY } from '../config';
 
 import {
   PhotoModel,
@@ -17,9 +18,8 @@ export const useFetchPhotos = () => {
 
   useEffect(() => {
     const searchPhotosByKeyword = async (): Promise<PhotoModel[]> => {
-      const apiKey: string = import.meta.env.VITE_UNSPLASH_API_KEY;
       const response: AxiosResponse<UnsplashResponse> = await axios.get(
-        `https://api.unsplash.com/search/photos?query=${searchKeyword.content}&per_page=24&client_id=${apiKey}`,
+        `${API_URL}search/photos?query=${searchKeyword.content}&per_page=24&client_id=${UNSPLASH_API_KEY}`,
       );
 
       const photosResponse: PhotoModel[] = response.data.results.map(
