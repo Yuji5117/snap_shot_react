@@ -37,5 +37,7 @@ export type SearchKeyword =
     }
   | {
       type: 'INPUT_TEXT';
-      content: string | null;
+      content: string;
     };
+
+export type SubTitleWord = 'Pictures' | 'Images';

@@ -9,6 +9,7 @@ import { categories } from './store/categories';
 import { CategoryType, PhotoModel, SearchKeyword } from './types/types';
 import Photo from './components/Photo';
 import { useFetchPhotos } from './hooks/useFetchPhotos';
+import { LOCAL_CONSTANT } from './localConstant';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -30,6 +31,21 @@ function App() {
     setSearchKeyword(searchKeyword);
   };
 
+  const subTitle = (searchKeyword: SearchKeyword): string => {
+    const keywordTypes = {
+      DEFAULT: 'Pictures',
+      INPUT_TEXT: 'Images',
+    };
+
+    const { content, type } = searchKeyword;
+
+    const searchKeywordTitle =
+      content.charAt(LOCAL_CONSTANT.CAPTAL_LETTER_NUMBER).toUpperCase() +
+      content.slice(LOCAL_CONSTANT.SECOUND_LETTER_NUMBER);
+
+    return `${searchKeywordTitle} ${keywordTypes[type]}`;
+  };
+
   return (
     <>
       <GlobalStyle />
@@ -48,7 +64,7 @@ function App() {
             </Item>
           ))}
         </CategoryContainer>
-        <Subtitle>{searchKeyword.content} Pictures</Subtitle>
+        <Subtitle>{subTitle(searchKeyword)}</Subtitle>
         <ImageContainer>
           {photos.map((photo: PhotoModel) => (
             <div key={photo.id}>
