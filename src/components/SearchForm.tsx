@@ -19,7 +19,7 @@ const SearchForm = ({ onChangeSearchKeyword }: PropsType) => {
         onClick={(e: MouseEvent<HTMLButtonElement>) =>
           onChangeSearchKeyword(e, {
             type: 'INPUT_TEXT',
-            content: keywordRef.current?.value,
+            content: keywordRef.current!.value,
           })
         }
       >
