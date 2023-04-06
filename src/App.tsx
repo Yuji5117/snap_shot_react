@@ -3,10 +3,10 @@ import { MouseEvent } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
-import Category from './components/CategoryText';
+import Category from './components/Category';
 import SearchForm from './components/SearchForm';
 import { categories } from './store/categories';
-import { CategoryType, DefaultKeyword, PhotoModel } from './types/types';
+import { CategoryType, PhotoModel, SearchKeyword } from './types/types';
 import Photo from './components/Photo';
 import { useFetchPhotos } from './hooks/useFetchPhotos';
 
@@ -19,14 +19,15 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-  const { photos, defaultKeyword, setDefaultKeyword } = useFetchPhotos();
+  const { photos, searchKeyword, setSearchKeyword } = useFetchPhotos();
 
-  const onChangeDefaultKeyword = (
+  const onChangeSearchKeyword = (
     e: MouseEvent<HTMLButtonElement>,
-    defaultKeyword: DefaultKeyword,
+    searchKeyword: SearchKeyword,
   ) => {
     e.preventDefault();
-    setDefaultKeyword(defaultKeyword);
+    if (searchKeyword.content === null) return;
+    setSearchKeyword(searchKeyword);
   };
 
   return (
@@ -35,19 +36,19 @@ function App() {
       <Wrapper>
         <Title>SnapShot</Title>
         <SearchContainer>
-          <SearchForm />
+          <SearchForm onChangeSearchKeyword={onChangeSearchKeyword} />
         </SearchContainer>
         <CategoryContainer>
           {categories.map((category: CategoryType) => (
             <Item key={category.id}>
               <Category
-                defaultKeyword={category.word}
-                onChangeDefaultKeyword={onChangeDefaultKeyword}
+                searchKeyword={category.word}
+                onChangeSearchKeyword={onChangeSearchKeyword}
               />
             </Item>
           ))}
         </CategoryContainer>
-        <Subtitle>{defaultKeyword} Pictures</Subtitle>
+        <Subtitle>{searchKeyword.content} Pictures</Subtitle>
         <ImageContainer>
           {photos.map((photo: PhotoModel) => (
             <div key={photo.id}>

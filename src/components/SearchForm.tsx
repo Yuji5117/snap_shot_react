@@ -1,10 +1,30 @@
+import { MouseEvent, useRef } from 'react';
 import styled from 'styled-components';
+import { SearchKeyword } from '../types/types';
 
-const SearchForm = () => {
+interface PropsType {
+  onChangeSearchKeyword: (
+    e: MouseEvent<HTMLButtonElement>,
+    searchKeyword: SearchKeyword,
+  ) => void;
+}
+
+const SearchForm = ({ onChangeSearchKeyword }: PropsType) => {
+  const keywordRef = useRef(null);
+
   return (
     <Form>
-      <Input placeholder="Search..." type="text" />
-      <SearchSubmitIcon type="submit" value="検索" />
+      <Input placeholder="Search..." type="text" ref={keywordRef} />
+      <SearchButton
+        onClick={(e: MouseEvent<HTMLButtonElement>) =>
+          onChangeSearchKeyword(e, {
+            type: 'INPUT_TEXT',
+            content: keywordRef.current.value,
+          })
+        }
+      >
+        検索
+      </SearchButton>
     </Form>
   );
 };
@@ -26,7 +46,7 @@ const Input = styled.input`
   border-radius: 5px 0 0 5px;
 `;
 
-const SearchSubmitIcon = styled.input`
+const SearchButton = styled.button`
   height: 45px;
   width: 50px;
   cursor: pointer;

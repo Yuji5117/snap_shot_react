@@ -1,6 +1,6 @@
 export type CategoryType = {
   id: number;
-  word: DefaultKeyword;
+  word: SearchKeyword;
 };
 
 export type UnsplashResponse = {
@@ -30,4 +30,12 @@ type Urls = {
   thumb: string;
 };
 
-export type DefaultKeyword = 'Mountain' | 'Beach' | 'Birds' | 'Food';
+export type SearchKeyword =
+  | {
+      type: 'DEFAULT';
+      content: 'Mountain' | 'Beach' | 'Birds' | 'Food';
+    }
+  | {
+      type: 'INPUT_TEXT';
+      content: string | null;
+    };
