@@ -9,6 +9,10 @@ interface PropsType {
   ) => void;
 }
 
+type SearchButtonProps = {
+  buttonColor: '#051c33' | '#FAFAFA';
+};
+
 const SearchForm = ({ findAllBySearchKeyword }: PropsType) => {
   const [keyword, setKeyword] = useState<string>('');
 
@@ -16,6 +20,8 @@ const SearchForm = ({ findAllBySearchKeyword }: PropsType) => {
     e.preventDefault();
     setKeyword(e.target.value);
   };
+
+  const buttonColor = keyword ? '#051c33' : '#FAFAFA';
 
   return (
     <Form>
@@ -31,6 +37,7 @@ const SearchForm = ({ findAllBySearchKeyword }: PropsType) => {
             content: keyword,
           })
         }
+        buttonColor={buttonColor}
         disabled={!keyword}
       >
         検索
@@ -53,11 +60,18 @@ const Input = styled.input`
   border-top: 3px solid #d7dbdf;
   border-left: 3px solid #d7dbdf;
   border-bottom: 3px solid #d7dbdf;
+  border-right: none;
   border-radius: 5px 0 0 5px;
+
+  outline: none;
 `;
 
-const SearchButton = styled.button`
+const SearchButton = styled.button<SearchButtonProps>`
   height: 45px;
   width: 50px;
+  color: #fff;
+  background-color: ${({ buttonColor }) => buttonColor};
+  border: 3px solid ${({ buttonColor }) => buttonColor};
+  border-radius: 0 5px 5px 0;
   cursor: pointer;
 `;
