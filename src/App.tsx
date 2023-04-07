@@ -3,7 +3,7 @@ import { MouseEvent } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
-import Category from './components/Category';
+import DefaultKeyword from './components/DefaultKeyword';
 import SearchForm from './components/SearchForm';
 import { categories } from './store/categories';
 import { CategoryType, PhotoModel, SearchKeyword } from './types/types';
@@ -57,7 +57,7 @@ function App() {
         <CategoryContainer>
           {categories.map((category: CategoryType) => (
             <Item key={category.id}>
-              <Category
+              <DefaultKeyword
                 searchKeyword={category.word}
                 findAllBySearchKeyword={findAllBySearchKeyword}
               />

@@ -10,7 +10,10 @@ interface PropsType {
   ) => void;
 }
 
-const Category = ({ searchKeyword, findAllBySearchKeyword }: PropsType) => {
+const DefaultKeyword = ({
+  searchKeyword,
+  findAllBySearchKeyword,
+}: PropsType) => {
   return (
     <>
       <Button onClick={(e) => findAllBySearchKeyword(e, searchKeyword)}>
@@ -20,9 +23,16 @@ const Category = ({ searchKeyword, findAllBySearchKeyword }: PropsType) => {
   );
 };
 
-export default Category;
+export default DefaultKeyword;
 
 const Button = styled.button`
-  /* color: white; */
+  background-color: #051c33;
+  color: #fff;
+  width: 100px;
+  height: 25px;
   font-size: 16px;
+  border-radius: 3px;
+  border: none;
+
+  cursor: pointer;
 `;
