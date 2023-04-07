@@ -65,13 +65,13 @@ function App() {
           ))}
         </CategoryContainer>
         <Subtitle>{subTitle(searchKeyword)}</Subtitle>
-        <ImageContainer>
+        <PhotoContainer>
           {photos.map((photo: PhotoModel) => (
-            <div key={photo.id}>
+            <PhotoItem key={photo.id}>
               <Photo url={photo.url} description={photo.description} />
-            </div>
+            </PhotoItem>
           ))}
-        </ImageContainer>
+        </PhotoContainer>
       </Wrapper>
     </>
   );
@@ -107,14 +107,9 @@ const CategoryContainer = styled.div`
 `;
 
 const Item = styled.div`
-  height: 30px;
-  width: 100px;
-  background-color: #051c33;
-  border-radius: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
 `;
 
 const Subtitle = styled.h2`
@@ -124,9 +119,15 @@ const Subtitle = styled.h2`
   text-align: center;
 `;
 
-const ImageContainer = styled.div`
+const PhotoContainer = styled.div`
   padding-top: 50px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px 20px;
+`;
+
+const PhotoItem = styled.div`
+  height: 180px;
+  width: 230px;
+  overflow: hidden;
 `;
