@@ -1,27 +1,37 @@
-import { MouseEvent, useRef } from 'react';
+import { ChangeEvent, MouseEvent, useState } from 'react';
 import styled from 'styled-components';
 import { SearchKeyword } from '../types/types';
 
 interface PropsType {
-  onChangeSearchKeyword: (
+  findAllBySearchKeyword: (
     e: MouseEvent<HTMLButtonElement>,
     searchKeyword: SearchKeyword,
   ) => void;
 }
 
-const SearchForm = ({ onChangeSearchKeyword }: PropsType) => {
-  const keywordRef = useRef<HTMLInputElement>(null);
+const SearchForm = ({ findAllBySearchKeyword }: PropsType) => {
+  const [keyword, setKeyword] = useState<string>('');
+
+  const onChengeKeyword = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setKeyword(e.target.value);
+  };
 
   return (
     <Form>
-      <Input placeholder="Search..." type="text" ref={keywordRef} />
+      <Input
+        placeholder="Search..."
+        type="text"
+        onChange={(e: ChangeEvent<HTMLInputElement>) => onChengeKeyword(e)}
+      />
       <SearchButton
         onClick={(e: MouseEvent<HTMLButtonElement>) =>
-          onChangeSearchKeyword(e, {
+          findAllBySearchKeyword(e, {
             type: 'INPUT_TEXT',
-            content: keywordRef.current!.value,
+            content: keyword,
           })
         }
+        disabled={!keyword}
       >
         検索
       </SearchButton>

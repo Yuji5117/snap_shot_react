@@ -22,7 +22,7 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   const { photos, searchKeyword, setSearchKeyword } = useFetchPhotos();
 
-  const onChangeSearchKeyword = (
+  const findAllBySearchKeyword = (
     e: MouseEvent<HTMLButtonElement>,
     searchKeyword: SearchKeyword,
   ) => {
@@ -52,14 +52,14 @@ function App() {
       <Wrapper>
         <Title>SnapShot</Title>
         <SearchContainer>
-          <SearchForm onChangeSearchKeyword={onChangeSearchKeyword} />
+          <SearchForm findAllBySearchKeyword={findAllBySearchKeyword} />
         </SearchContainer>
         <CategoryContainer>
           {categories.map((category: CategoryType) => (
             <Item key={category.id}>
               <Category
                 searchKeyword={category.word}
-                onChangeSearchKeyword={onChangeSearchKeyword}
+                findAllBySearchKeyword={findAllBySearchKeyword}
               />
             </Item>
           ))}

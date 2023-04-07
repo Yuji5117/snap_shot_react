@@ -4,16 +4,16 @@ import { SearchKeyword } from '../types/types';
 
 interface PropsType {
   searchKeyword: SearchKeyword;
-  onChangeSearchKeyword: (
+  findAllBySearchKeyword: (
     e: MouseEvent<HTMLButtonElement>,
     searchKeyword: SearchKeyword,
   ) => void;
 }
 
-const Category = ({ searchKeyword, onChangeSearchKeyword }: PropsType) => {
+const Category = ({ searchKeyword, findAllBySearchKeyword }: PropsType) => {
   return (
     <>
-      <Button onClick={(e) => onChangeSearchKeyword(e, searchKeyword)}>
+      <Button onClick={(e) => findAllBySearchKeyword(e, searchKeyword)}>
         {searchKeyword.content}
       </Button>
     </>
