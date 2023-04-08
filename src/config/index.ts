@@ -1,2 +1,3 @@
-export const API_URL = import.meta.env.VITE_UNSPLASH_API_URL;
-export const UNSPLASH_API_KEY = import.meta.env.VITE_UNSPLASH_API_KEY;
+export const API_URL = process.env.VITE_UNSPLASH_API_URL || 'undefined';
+export const UNSPLASH_API_KEY =
+  process.env.VITE_UNSPLASH_API_KEY || 'undefined';
