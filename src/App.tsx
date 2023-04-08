@@ -9,7 +9,7 @@ import { categories } from './store/categories';
 import { CategoryType, PhotoModel, SearchKeyword } from './types/types';
 import Photo from './components/Photo';
 import { useFetchPhotos } from './hooks/useFetchPhotos';
-import { LOCAL_CONSTANT } from './localConstant';
+import { formatCapitalLetterToUpperCase } from './utils/formatCapitalLetterToUpperCase';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -31,7 +31,7 @@ function App() {
     setSearchKeyword(searchKeyword);
   };
 
-  const subTitle = (searchKeyword: SearchKeyword): string => {
+  const makePhotoTitle = (searchKeyword: SearchKeyword): string => {
     const keywordTypes = {
       DEFAULT: 'Pictures',
       INPUT_TEXT: 'Images',
@@ -39,12 +39,12 @@ function App() {
 
     const { content, type } = searchKeyword;
 
-    const searchKeywordTitle =
-      content.charAt(LOCAL_CONSTANT.CAPTAL_LETTER_NUMBER).toUpperCase() +
-      content.slice(LOCAL_CONSTANT.SECOUND_LETTER_NUMBER);
-
-    return `${searchKeywordTitle} ${keywordTypes[type]}`;
+    return `${content} ${keywordTypes[type]}`;
   };
+
+  const photoTitle = formatCapitalLetterToUpperCase(
+    makePhotoTitle(searchKeyword),
+  );
 
   return (
     <>
@@ -64,7 +64,7 @@ function App() {
             </Item>
           ))}
         </CategoryContainer>
-        <Subtitle>{subTitle(searchKeyword)}</Subtitle>
+        <PhotoTitle>{photoTitle}</PhotoTitle>
         <PhotoContainer>
           {photos.map((photo: PhotoModel) => (
             <PhotoItem key={photo.id}>
@@ -112,7 +112,7 @@ const Item = styled.div`
   justify-content: center;
 `;
 
-const Subtitle = styled.h2`
+const PhotoTitle = styled.h2`
   padding-top: 50px;
   font-size: 2em;
   color: #051c33;
