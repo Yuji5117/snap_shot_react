@@ -122,6 +122,7 @@ const PhotoTitle = styled.h2`
 const PhotoContainer = styled.div`
   padding-top: 50px;
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 10px 20px;
 `;
