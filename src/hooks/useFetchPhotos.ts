@@ -1,7 +1,6 @@
 import { AxiosError, AxiosResponse } from 'axios';
 import { useEffect, useState } from 'react';
 import { UNSPLASH_API_KEY } from '../config';
-import { axiosInstance } from '../lib';
 
 import {
   PhotoModel,
@@ -9,6 +8,7 @@ import {
   UnsplashPhoto,
   UnsplashResponse,
 } from '../types/types';
+import { getPhotos } from '../api/getPhotos';
 
 export const useFetchPhotos = () => {
   const [photos, setPhotos] = useState<PhotoModel[]>([]);
@@ -19,8 +19,9 @@ export const useFetchPhotos = () => {
 
   useEffect(() => {
     const searchPhotosByKeyword = async (): Promise<PhotoModel[]> => {
-      const response: AxiosResponse<UnsplashResponse> = await axiosInstance(
-        `/search/photos?query=${searchKeyword.content}&per_page=24&client_id=${UNSPLASH_API_KEY}`,
+      const response: AxiosResponse<UnsplashResponse> = await getPhotos(
+        searchKeyword.content,
+        UNSPLASH_API_KEY,
       );
 
       const photosResponse: PhotoModel[] = response.data.results.map(
