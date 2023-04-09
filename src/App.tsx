@@ -120,6 +120,9 @@ const PhotoTitle = styled.h2`
 `;
 
 const PhotoContainer = styled.div`
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
   padding-top: 50px;
   display: flex;
   justify-content: space-between;
