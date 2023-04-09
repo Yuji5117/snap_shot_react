@@ -1,6 +1,7 @@
 import { ChangeEvent, MouseEvent, useState } from 'react';
 import styled from 'styled-components';
 import { SearchKeyword } from '../types/types';
+import { BiSearch } from 'react-icons/bi';
 
 interface PropsType {
   findAllBySearchKeyword: (
@@ -40,7 +41,7 @@ const SearchForm = ({ findAllBySearchKeyword }: PropsType) => {
         buttonColor={buttonColor}
         disabled={!keyword}
       >
-        検索
+        <BiSearch size="25px" />
       </SearchButton>
     </Form>
   );
@@ -48,10 +49,12 @@ const SearchForm = ({ findAllBySearchKeyword }: PropsType) => {
 
 export default SearchForm;
 
-const Form = styled.form``;
+const Form = styled.form`
+  height: 45px;
+`;
 
 const Input = styled.input`
-  height: 45px;
+  height: 100%;
   width: 410px;
   padding-right: 20px;
   padding-left: 20px;
@@ -62,12 +65,13 @@ const Input = styled.input`
   border-bottom: 3px solid #d7dbdf;
   border-right: none;
   border-radius: 5px 0 0 5px;
+  vertical-align: top;
 
   outline: none;
 `;
 
 const SearchButton = styled.button<SearchButtonProps>`
-  height: 45px;
+  height: 100%;
   width: 50px;
   color: #fff;
   background-color: ${({ buttonColor }) => buttonColor};
